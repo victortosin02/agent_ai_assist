@@ -116,7 +116,8 @@ Create a new delivery stream and set the source to your Kinesis stream.
 
 ```aws firehose create-delivery-stream \
     --delivery-stream-name MyDeliveryStream \
-    --kinesis-stream-source-configuration StreamARN=<kinesis-stream-arn>,RoleARN=<iam-role-arn>```
+    --kinesis-stream-source-configuration StreamARN=<kinesis-stream-arn>,RoleARN=<iam-role-arn>
+```
 
 Apply transformations and analytics using AWS Lambda
 
@@ -133,7 +134,8 @@ def lambda_handler(event, context):
     return {
         'statusCode': 200,
         'body': json.dumps('Hello from Lambda!')
-    }```
+    }
+```
 
 
 Configure the Kinesis stream to trigger the Lambda function.
@@ -143,7 +145,8 @@ Configure the Kinesis Data Firehose delivery stream to store data in S3 or Dynam
 ```aws firehose update-destination \
     --delivery-stream-name MyDeliveryStream \
     --current-delivery-stream-version-id <version-id> \
-    --s3-destination-update RoleARN=<iam-role-arn>,BucketARN=<s3-bucket-arn>```
+    --s3-destination-update RoleARN=<iam-role-arn>,BucketARN=<s3-bucket-arn>
+```
 
 Step 6: Integrate with Symbl.ai
 Get an authentication token from Symbl.ai
@@ -163,7 +166,8 @@ headers = {
 
 response = requests.post(url, json=payload, headers=headers)
 auth_token = response.json()['accessToken']
-print("Auth Token:", auth_token)```
+print("Auth Token:", auth_token)
+```
 
 
 Transcribe audio for conversational intelligence
@@ -201,13 +205,13 @@ if response.status_code == 200:
     access_token = response.json()['accessToken']
     print("accessToken => " + access_token)
 else:
-    print("Failed to get access token", response.text)```
+    print("Failed to get access token", response.text)
+```
 
 
 2. Process Audio or Text Data
 Now, use the access token to process your audio or text data. For this example, we will process an audio file.
 
-Request:
 ```
 import requests
 import json
@@ -234,7 +238,8 @@ if response.status_code == 201:
     print("conversationId => " + conversation_id)
     print("jobId => " + job_id)
 else:
-    print("Failed to process audio", response.text)```
+    print("Failed to process audio", response.text)
+```
 
 
 
@@ -259,7 +264,8 @@ if response.status_code == 200:
     job_status = response.json()['status']
     print("Job Status => " + job_status)
 else:
-    print("Failed to get job status", response.text)```
+    print("Failed to get job status", response.text)
+```
 
 
 4. Retrieve Messages with Intelligence
@@ -295,7 +301,8 @@ if response.status_code == 200:
         print(f"Sentiment: {message['sentiment']['polarity']['score']}")
         print("------")
 else:
-    print("Failed to get messages", response.text)```
+    print("Failed to get messages", response.text)
+```
 
 
 Example Response
@@ -443,8 +450,8 @@ A successful response for the messages request might look like this:
             ]
         }
     ]
-}```
-
+}
+```
 
 
 This guide provides a comprehensive overview, from setting up Amazon Connect and Kinesis to integrating with Symbl.ai for advanced conversation analytics. For detailed instructions and best practices, refer to the AWS documentation and Symbl.ai API documentation.
@@ -487,7 +494,7 @@ Solution suggestions: Suggest potential solutions based on the customer's issue.
 By setting up trackers with Symbl.ai and using common phrases for troubleshooting calls as triggers, call center agents can receive timely AI assistance to resolve customer issues efficiently and effectively.
 
 
-Set up trackers with Symbl.ai
+**Set up trackers with Symbl.ai**
 Generate an Access Token: This token is required to authenticate your API requests to Symbl.ai.
 ```
 curl -k -X POST "https://api.symbl.ai/oauth2/token:generate" \
@@ -586,7 +593,6 @@ After running these steps, you might get a response like this:
 ```
 
 This output indicates that the phrases "restart" and "error" were used during the call, triggering the "Troubleshooting" tracker. Using this information, you can identify specific points in the call where the agent provided troubleshooting assistance.
-
 
 
 Here is a step-by-step guide to building a real-time agent assist chatbot using Nebula LLM and RAG with a Python SDK:
