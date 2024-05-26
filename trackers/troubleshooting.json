@@ -1,0 +1,6 @@
+{
+    "trackers": [{
+        "name": "Troubleshooting",
+        "vocabulary": ["restart", "reboot", "reset", "troubleshoot", "error", "not working"]
+    }]
+}
