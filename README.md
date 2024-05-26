@@ -105,7 +105,7 @@ Verify that the audio is being streamed to Kinesis
 
 Use the Kinesis dashboard to view the incoming data stream.
 
-aws kinesis get-shard-iterator --stream-name MyKinesisStream --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON
+```aws kinesis get-shard-iterator --stream-name MyKinesisStream --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON```
 
 Step 5: Process and analyze the stream data
 Use Amazon Kinesis Data Firehose to capture and process the stream data
