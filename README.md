@@ -92,7 +92,8 @@ Configure Kinesis stream details
 ```aws connect associate-kinesis-video-stream \
     --instance-id <your-connect-instance-id> \
     --stream-arn <kinesis-stream-arn> \
-    --role-arn <iam-role-arn>```
+    --role-arn <iam-role-arn>
+```
 
 Enter the Kinesis stream name (MyKinesisStream) and region.
 Configure additional settings like audio format and encryption.
