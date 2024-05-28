@@ -43,7 +43,7 @@ A cloud-based contact center solution that enables businesses to deliver superio
 - **Amazon Kinesis:** 
 A fully managed service that makes it easy to collect, process, and analyze real-time, streaming data. It will be used to stream audio data from Amazon Connect and process it for analysis.
 - **Symbl.ai:** 
-- A conversational intelligence platform that analyzes and generates insights from natural language conversations. It will be used to transcribe and analyze audio data, set up trackers, and implement Retrieval Augmented Generation (RAG) using Nebula LLM.
+A conversational intelligence platform that analyzes and generates insights from natural language conversations. It will be used to transcribe and analyze audio data, set up trackers, and implement Retrieval Augmented Generation (RAG) using Nebula LLM.
 - **Nebula LLM:** 
 A large language model that generates human-like text based on input prompts. It will be used to generate answers to customer queries based on the knowledge base and similar content.
 
