@@ -42,7 +42,7 @@ Companies want to make sense of the conversations happening in their contact cen
 A cloud-based contact center solution that enables businesses to deliver superior customer service at a lower cost. This Amazon service will be used to handle customer calls and stream audio data to Amazon Kinesis.
 - **Amazon Kinesis:** 
 A fully managed service that makes it easy to collect, process, and analyze real-time, streaming data. It will be used to stream audio data from Amazon Connect and process it for analysis.
-**Symbl.ai:** 
+- **Symbl.ai:** 
 - A conversational intelligence platform that analyzes and generates insights from natural language conversations. It will be used to transcribe and analyze audio data, set up trackers, and implement Retrieval Augmented Generation (RAG) using Nebula LLM.
 - **Nebula LLM:** 
 A large language model that generates human-like text based on input prompts. It will be used to generate answers to customer queries based on the knowledge base and similar content.
