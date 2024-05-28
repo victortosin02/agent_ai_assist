@@ -411,7 +411,7 @@ def rag(query):
     return response
 ```
 
-# Test the RAG model
+**Test the RAG model**
 query = 'How do I troubleshoot a slow computer?'
 response = rag(query)
 print(response)
