@@ -36,6 +36,7 @@ AI systems require less manual setup and management, reducing the risk of errors
 
 
 **Solution Components and Purposes**
+
 Companies want to make sense of the conversations happening in their contact centers to improve productivity, gain insight, monitor quality, and react quickly to events as they unfold. There are many innovative technologies that are transforming the contact center, and below are some of the components and services leveraged for the sake of this tutorial and the purpose each of these services serve.
 
 - **Amazon Connect:** 
