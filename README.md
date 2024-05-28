@@ -49,13 +49,14 @@ A large language model that generates human-like text based on input prompts. It
 
 
 **Prerequisites**
-You will need access to the following:
 
+You will need access to the following:
 - A pair of Access and Secret keys for the AWS account where Amazon Connect is configured.
 - A pair of appId and secret for Symbl.ai, which you can get from the platform’s main page. We use these to retrieve a temporary access token.
 - An API Key for Nebula LLM, which you get by joining the beta wait list.
 
 **Set up streaming for phone conversations**
+
 Streaming integration brings new opportunities to react to events as they happen, instead of waiting for transactions that process afterwards. Organizations who have realized this are using it for real-time analytics, machine learning, and other decision-making services. Here, you will learn about the use of the Amazon Connect (AC) and Amazon Kinesis (AK) services, extending to other Amazon features and Artificial Intelligence with Symbl.ai. API documentation details may change, but this article provides the basic ideas that help developers further explore and use these services.
 
 Now to dive deep into the workings of this solution, we start by configuring all the neccessary credentials. 
