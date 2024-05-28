@@ -193,15 +193,20 @@ else:
     print("Failed to get messages", response.text)
 ```
 
-**Determine When Call Center Agents Receive AI Assistance**
+## Determine When Call Center Agents Receive AI Assistance ##
+
 To determine when agents can receive real-time AI assistance during remote troubleshooting calls, you need to create trackers and configure triggers that activate the running of the created tracker. In this section, we will configure trackers on Symbl.ai using common troubleshooting phrases as triggers.
 
 **Step-by-Step Guide**
+
 - Set Up Trackers with Symbl.ai
 
 **Login to Symbl.ai:**
+
 Go to the Symbl.ai website and log in to your account. You will be directed to the Symbl.ai dashboard.
+
 **Create a Custom Tracker:**
+
 - Navigate to Tracker Management.
 - Click on Create Custom Tracker.
 - Configure the Custom Tracker:
@@ -214,6 +219,7 @@ You will be directed to a page where you need to fill in the following fields:
 - Vocabulary: Add at least four phrases that will serve as troubleshooting triggers. For example, "restart", "reboot", "reset", "troubleshoot", "error", and "not working".
 
 **View the Tracker:**
+
 After creating the custom tracker, go to the API Explorer and click on Trackers to see the newly created tracker
 
 Example Troubleshooting Triggers:
@@ -228,9 +234,11 @@ Example Troubleshooting Triggers:
 By following these steps, you can effectively determine when call center agents receive AI assistance using Symbl.ai. Setting up trackers with specific troubleshooting phrases ensures that AI assistance is provided at the right moments, enhancing the efficiency and effectiveness of your call center operations.
 
 **Provide Agents with real-time AI assistance**
+
 It is time to put all that have been discussed into an actionable real-time perspective by providing a practical walk-through of a sample use case that provide an agent wuth real-time assistance during a conversation with a client. At this point in this tutorial, it is assumed that you have created an account on the Symbl.ai platform, and have access to Nebula LLM and have completed the necessary authentication. If you require assistance on any of these steps, refer to our docs on getting started and how to authenticate. If you need access to the Nebula Playground and model API visit https://symbl.ai.
 
 **Implementing Real-Time AI Assistance**
+
 Here's how you can incorporate Amazon Connect, Amazon Kinesis, and Nebula LLM in the workflow:
 
 We start by configuring Amazon Connect and Kinesis Stream:
@@ -321,9 +329,11 @@ This script demonstrates the end-to-end process of streaming audio data from Ama
 By integrating Amazon Connect and Amazon Kinesis with Symbl.ai and Nebula LLM, you can create a robust system for real-time AI assistance in your call center. This setup ensures that agents receive immediate support upon the trigger of troubleshooting phrases during customer interactions, improving efficiency and customer satisfaction.
 
 **Implement retrieval augmented generation (RAG) with call center training materials**
+
 To implement retrieval augmented generation (RAG) with call center training materials using the Nebula API, you'll need to adapt the provided code snippet. RAG is a technique that combines retrieval-based and generation-based methods, which typically involves fetching relevant documents or pieces of information to help generate a more informed and accurate response.
 
 **Step-by-Step Implementation**
+
 **Step 1: Setup**
 Ensure you have your API key and the necessary endpoint URLs.
 
