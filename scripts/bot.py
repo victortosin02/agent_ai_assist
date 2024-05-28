@@ -73,3 +73,19 @@ def rag(query):
 query = 'How do I troubleshoot a slow computer?'
 response = rag(query)
 print(response)
+
+
+# Main function to run the chatbot
+def main():
+    print("Welcome to the Agent Assist Chatbot!")
+    while True:
+        user_query = input("You: ")
+        if user_query.lower() in ['exit', 'quit']:
+            print("Goodbye!")
+            break
+        response = rag(user_query)
+        print(f"Bot: {response}")
+
+# Run the chatbot
+if __name__ == "__main__":
+    main()
