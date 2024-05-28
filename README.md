@@ -115,6 +115,7 @@ def lambda_handler(event, context):
 
 
 **Use the Telephony API**
+
 Create a new file in your script folder called telephony.py. The purpose of creating this file is to authorizes developers with the Telephony API and uses PSTN to call a given phone number. The sample also returns a conversation ID, which can be used to generate conversation intelligence.
 
 ```import symbl
@@ -123,7 +124,6 @@ app_id = "<APP_ID>"
 app_secret = "<APP_SECRET>"
 phone_number = "<PHONE_NUMBER>"
 email = "<EMAIL>"
-
 
 connection_object = symbl.Telephony.start_pstn(
   credentials={"app_id": app_id, "app_secret": app_secret},
@@ -140,7 +140,6 @@ connection_object = symbl.Telephony.start_pstn(
     },
   ]
 )
-
 print("Conversation ID: " + connection_object.conversation.get_conversation_id())```
 
 Where:
