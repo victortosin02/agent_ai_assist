@@ -111,8 +111,8 @@ def lambda_handler(event, context):
         return {
             'statusCode': 500,
             'body': json.dumps('Error streaming audio')
-        }```
-
+        }
+```
 
 **Use the Telephony API**
 
@@ -140,20 +140,22 @@ connection_object = symbl.Telephony.start_pstn(
     },
   ]
 )
-print("Conversation ID: " + connection_object.conversation.get_conversation_id())```
+print("Conversation ID: " + connection_object.conversation.get_conversation_id())
+```
 
 Where:
 
 <APP_ID> and <APP_SECRET> are your App ID and Secret from your Symbl.ai Home page.
 <NAME> is the name of the person speaking.
 <EMAIL> is the email address of the person speaking. If provided, when the audio stream ends, the Streaming API sends an email with conversation intelligence to the given address.
-To run the code sample:
+
+**To run the code sample:**
 
 On the command line, go to your Python project directory.
 
 Run the code sample.
 
-python3 telephony.py
+`python3 telephony.py`
 When you run the code, the Telephony API places a phone call to the given number and captures any spoken conversation.
 
 **Generate Conversational Intelligence:**
