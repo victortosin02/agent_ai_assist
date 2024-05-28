@@ -155,7 +155,8 @@ On the command line, go to your Python project directory.
 
 Run the code sample.
 
-`python3 telephony.py`
+```python3 telephony.py```
+
 When you run the code, the Telephony API places a phone call to the given number and captures any spoken conversation.
 
 **Generate Conversational Intelligence:**
@@ -189,8 +190,8 @@ if response.status_code == 200:
         print(f"Sentiment: {message['sentiment']['polarity']['score']}")
         print("------")
 else:
-    print("Failed to get messages", response.text)```
-
+    print("Failed to get messages", response.text)
+```
 
 **Determine When Call Center Agents Receive AI Assistance**
 To determine when agents can receive real-time AI assistance during remote troubleshooting calls, you need to create trackers and configure triggers that activate the running of the created tracker. In this section, we will configure trackers on Symbl.ai using common troubleshooting phrases as triggers.
@@ -221,7 +222,8 @@ Example Troubleshooting Triggers:
         "name": "Troubleshooting",
         "vocabulary": ["restart", "reboot", "reset", "troubleshoot", "error", "not working"]
     }
-]```
+]
+```
 
 By following these steps, you can effectively determine when call center agents receive AI assistance using Symbl.ai. Setting up trackers with specific troubleshooting phrases ensures that AI assistance is provided at the right moments, enhancing the efficiency and effectiveness of your call center operations.
 
@@ -242,7 +244,8 @@ kinesis_client = boto3.client('kinesis')
 response = kinesis_client.create_stream(
     StreamName='YourKinesisStreamName',
     ShardCount=1
-)```
+)
+```
 
 Set Up Kinesis Stream to Receive Audio Data from Amazon Connect:
 In the Amazon Connect console, configure the instance to stream call audio data to the Kinesis stream created above.
@@ -310,7 +313,8 @@ def assist_agent(transcription):
 
 # Continuously read from Kinesis stream
 while True:
-    read_from_kinesis()```
+    read_from_kinesis()
+```
 
 This script demonstrates the end-to-end process of streaming audio data from Amazon Connect via Amazon Kinesis, transcribing it using Symbl.ai, and providing real-time AI assistance with Nebula LLM.
 
@@ -394,7 +398,8 @@ def rag(query):
     # Generate response with context
     response = generate_response(query, relevant_docs)
     
-    return response```
+    return response
+```
 
 # Test the RAG model
 query = 'How do I troubleshoot a slow computer?'
@@ -420,7 +425,7 @@ To set up a simple agent assist chatbot that uses retrieval-augmented generation
 
 ** Requirements **
 Install the required libraries:
-pip install torch transformers elasticsearch requests
+```pip install torch transformers elasticsearch requests```
 
 Ensure you have an Elasticsearch instance running and Symbl.ai API access with your API key.
 
@@ -513,7 +518,8 @@ def main():
 
 # Run the chatbot
 if __name__ == "__main__":
-    main()```
+    main()
+```
 
 **Explanation**
 **Initialize Components:**
