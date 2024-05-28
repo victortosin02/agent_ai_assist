@@ -335,6 +335,7 @@ To implement retrieval augmented generation (RAG) with call center training mate
 **Step-by-Step Implementation**
 
 **Step 1: Setup**
+
 Ensure you have your API key and the necessary endpoint URLs.
 
 **Step 2: Retrieve Relevant Information**
@@ -412,6 +413,7 @@ def rag(query):
 ```
 
 **Test the RAG model**
+
 query = 'How do I troubleshoot a slow computer?'
 response = rag(query)
 print(response)
@@ -420,20 +422,25 @@ In the code above, Symbl.ai's tracking API was leveraged to check if the query c
 
 **Explanation**
 **Symbl.ai Trackers API:**
+
 symbl_extract_context includes logic to call Symbl.ai’s tracker API and extract matches from the predefined tracker.
 The payload for the Symbl.ai API call remains the same, but the response handling now checks for tracker matches in the trackers section of the response.
 
 **Enhanced Query:**
+
 This function combines key phrases, topics, and matched phrases from the tracker to form a more comprehensive enhanced query.
 
 **Document Retrieval:**
+
 Elasticsearch uses the enhanced query to search for relevant documents.
 By using the existing tracker on Symbl.ai, the RAG system becomes more efficient in identifying relevant phrases and topics, thus improving the overall accuracy and relevance of the generated responses.
 
 **Set up a simple agent assist chatbot**
+
 To set up a simple agent assist chatbot that uses retrieval-augmented generation (RAG) with Elasticsearch and BART, integrated with Symbl.ai for context extraction and trackers, you can follow the steps below. This example includes the necessary code to build a basic chatbot using these components.
 
 ** Requirements **
+
 Install the required libraries:
 ```pip install torch transformers elasticsearch requests```
 
@@ -533,6 +540,7 @@ if __name__ == "__main__":
 
 **Explanation**
 **Initialize Components:**
+
 - Elasticsearch client to retrieve documents.
 - BART model and tokenizer for generating responses.
 - Symbl.ai API key and URL for context extraction.
@@ -541,15 +549,19 @@ if __name__ == "__main__":
 After initialization of required components, the symbl_extract_context function sends the query to Symbl.ai to extract key phrases, topics, and matched phrases from the predefined tracker.
 
 **Document Retrieval:**
+
 retrieve_training_materials function uses the enhanced query to search for relevant documents in Elasticsearch.
 
 ** Response Generation **:
+
 The generate_response function combines the user query with the retrieved documents' content and generates a response using the BART model.
 
 **RAG Process:**
+
 The rag function integrates document retrieval and response generation to provide a coherent answer to the user's query.
 
 **Chatbot Interaction:**
+
 main function handles the user interaction in a loop, continuously processing user queries and providing responses until the user decides to exit.
 This setup provides a basic agent assist chatbot that leverages retrieval-augmented generation to provide informed and contextually relevant responses to user queries.
 
