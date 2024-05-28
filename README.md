@@ -2,7 +2,6 @@
 Conversational AI is currently attracting great attention in various industries such as smart home, customer service, and especially automated call centers. Traditional call center systems require significant workforces to handle customer inquiries, resulting in increased companies' operation costs. Many companies have sought to automate call centers by implementing their own customized interactive voice response systems or benefiting from one of the various commercial, off-the-shelf systems. However, these traditional conversational agents have several limitations. These agents typically require a well-structured interaction design and strictly processed user input. For example, if the users do not select the appropriate number or manually input information about their identities and intentions, traditional call center agents would be difficult to properly understand and help solve the users' inquiries. This results in a high customer churn rate. Furthermore, traditional conversational agents implement scripted and flow-guided dialogs, which makes agents straightforward. Given the ever-growing customer service terrain, call center agents of today need efficient tools in order to be able to tackle issues quicker and with better results. The crux of much of this growing needs lie more in situation when those that need help and or want to know more about what you have available, reach out with questions or ask for assistance. This moment, right here is when a relationship with the customer either blooms or wilts. Unfortunately for many contact centers, they suffer from an onerous and antiquated queue mechanism that results in excessive chances to wait in a long line only to be evenly distributed across limited seats. Overall this traditional process can be revolutionized by integrating artificial intelligence components such as generative models like Nebula LLM of Symbl AI into platforms such as Amazon Connect powered by services like Amazon Kinesis. ⁤ ⁤
 Bearing in mind the need to assist contact center agents with real-time intelligent assistance, this tutorial explains steps to integrate asynchronous Amazon Connect with Symbl calls to enhance its real-time speech to text capabilities and transform call centers. The architecture follows a serverless design, thus minimizing the need to support physical on-premise infrastructure. By implementing this solution, technical architects can save additional development skills, including telephony and machine learning, to focus on custom business use-case requirements. This provides a great way to transform call centers faster and create meaningful experiences for agents and a more reliable and secure environment for organizations.
 
-
 **Why Use Symbl.ai Over Amazon Connect's Generative AI Feature?**
 As a relatively young market with multiple players, contact centers can sometimes find it challenging to choose a specific technology to satisfy their needs. In this section of the tutorial, we will provide developers an extensive comparative analysis of the two technologies (Symbl.ai and Amazon Connect Generative AI) often used by Contact Centers to help businesses make a more informed decision and why we have a more favored inclination towards Symbl.ai when it comes to providing real-time assistance to contact center agents. We study the AI-powered Symbl.ai technology, which is a cloud-based API platform for processing conversation data, and the Amazon Connect technology, which is a cloud service that enables businesses to automate and improve the customer experience they deliver to their customers. Below is an elaborate explanation from different thematic concerns to futher understand why you should use Symbl.ai Over Amazon Connect's Generative AI Feature.
 
@@ -13,32 +12,39 @@ Symbl.ai specializes in advanced conversational intelligence, offering capabilit
 With comprehensive analytics suite offerings, Symbl.ai provides both real-time and post-conversation insights, which are essential for immediate customer support and long-term strategic planning. Its real-time capabilities, including live transcription and contextual understanding, significantly enhance agent performance and customer satisfaction. Amazon Connect's Generative AI, on the other hand, primarily focuses on improving the customer interaction process during the call, particularly in queue selection, but may lack the comprehensive post-conversation insights offered by Symbl.ai, limiting its utility for ongoing improvements and strategic analysis.
 
 **Scalability and Cross-Platform Support**
+
 In terms of flexibility and adaptability, Symbl.ai boasts a platform-agnostic design enabling seamless integration across various communication channels such as phone, web, social media, and more, providing a consistent conversational experience across different platforms, which is ideal for businesses with diverse communication needs. In contrast, Amazon Connect's Generative AI is tightly integrated with the Amazon Connect ecosystem, offering an advantage for users deeply embedded in the AWS infrastructure, but potentially limiting its versatility when integrating with non-AWS platforms or across multiple communication channels.
 
 **Developer and User Community Support**
+
 Symbl.ai boasts extensive developer resources and support, facilitating easy implementation and customization according to specific requirements, alongside an active community and support forums that enable quick issue resolution and sharing of best practices. However, Amazon Connect's Generative AI, backed by the robust resources and support of AWS, is primarily focused on AWS-specific implementations, and its user community centers around AWS services, thereby limiting its exposure to broader conversational AI use cases. This makes Symbl.ai a more versatile and adaptable solution for diverse business needs.
 
-## Real-Time AI Assistance for Call Center Agents
+## Real-Time AI Assistance for Call Center Agents ##
 In today's fast-paced customer service landscape, call center agents need efficient tools to resolve issues quickly and effectively. This tutorial will guide developers in integrating Amazon Connect and Symbl.ai using Amazon Kinesis to create an AI assistant with Symbl.ai Trackers and Nebula LLM. This solution aims to provide call center agents with real-time AI assistance, enhancing their troubleshooting capabilities and improving customer satisfaction.
 
-## Why Use Symbl.ai Over Amazon Connect's Generative AI Feature?
+## Why Use Symbl.ai Over Amazon Connect's Generative AI Feature? ##
 When comparing Symbl.ai to Amazon Connect's generative AI feature for transforming contact center experiences, there are several distinct advantages that Symbl.ai offers, particularly in terms of flexibility, depth of integration, and specialized capabilities. Here’s a detailed look at why you might choose Symbl.ai over Amazon Connect's generative AI:
 
 **Specialized Conversational Intelligence**
+
 Symbl.ai specializes in advanced conversational intelligence, offering capabilities that go beyond simple generative responses and real-time transcription. Its features, such as sentiment analysis, topic extraction, conversation summarization, action item detection, and follow-up tracking, provide a deeper understanding of customer interactions and enhance agent productivity. In contrast, Amazon Connect's Generative AI primarily focuses on streamlining queue selection and handling natural language inputs, making it effective for improving queue selection through natural language descriptions, but lacking the same depth of conversational analysis as Symbl.ai.
 
 **Real-Time and Post-Conversation Insights**
+
 With comprehensive analytics suite offerings, Symbl.ai provides both real-time and post-conversation insights, which are essential for immediate customer support and long-term strategic planning. Its real-time capabilities, including live transcription and contextual understanding, significantly enhance agent performance and customer satisfaction. Amazon Connect's Generative AI, on the other hand, primarily focuses on improving the customer interaction process during the call, particularly in queue selection, but may lack the comprehensive post-conversation insights offered by Symbl.ai, limiting its utility for ongoing improvements and strategic analysis.
 
 **Scalability and Cross-Platform Support**
+
 In terms of flexibility and adaptability, Symbl.ai boasts a platform-agnostic design enabling seamless integration across various communication channels such as phone, web, social media, and more, providing a consistent conversational experience across different platforms, which is ideal for businesses with diverse communication needs. In contrast, Amazon Connect's Generative AI is tightly integrated with the Amazon Connect ecosystem, offering an advantage for users deeply embedded in the AWS infrastructure, but potentially limiting its versatility when integrating with non-AWS platforms or across multiple communication channels.
 
 **Developer and User Community Support**
+
 Symbl.ai boasts extensive developer resources and support, facilitating easy implementation and customization according to specific requirements, alongside an active community and support forums that enable quick issue resolution and sharing of best practices. However, Amazon Connect's Generative AI, backed by the robust resources and support of AWS, is primarily focused on AWS-specific implementations, and its user community centers around AWS services, thereby limiting its exposure to broader conversational AI use cases. This makes Symbl.ai a more versatile and adaptable solution for diverse business needs.
 
 While Amazon Connect's generative AI feature offers significant benefits for improving queue selection and customer interaction within the AWS ecosystem, Symbl.ai stands out with its specialized conversational intelligence capabilities, extensive customization options, real-time and post-conversation insights, and broader cross-platform support. For organizations looking to implement a more nuanced and flexible conversational AI solution that goes beyond the confines of queue selection, Symbl.ai presents a compelling choice.
 
-**Why provide call center agents with AI assistance in the first place? Any stats to support this need?**
+**Why provide call center agents with AI assistance in the first place? Any stats to support this need
+
 Call centers can be one of the most stressful work environments, with agents coping with problems of customers, strict schedules, linguistic and cultural barriers, highly variable workflows, multitasking, and repetitive tasks. Such concerns might lead to agent stress, burnout, and turnover. The high cost of replacing trained staff can discourage industrial managers and entrepreneurs who see high absenteeism, long waiting times, customer dissatisfaction, limited support, and high labor turnover of both customers, companies, and economies. Indeed, the way of communicating services to potential customers, the quality of services to existing customers, and the ways in which customer relationships are managed do have a big impact on the faithful customer base and growth of the business. The identification of the possible discomfort zones and the timely identification of the sense of humor, and courteous and professional words of the operators certainly support corporate image, helping the company in the communication activities and in improving its reputation. The capture of useful business information can also lead to further business activities. Here are some reasons why it might be time to upgrade to an AI assisted systems:
 
 **1. Improved Customer Experience:**
@@ -54,18 +60,22 @@ AI systems require less manual setup and management, reducing the risk of errors
 **Solution Components and Purposes**
 Companies want to make sense of the conversations happening in their contact centers to improve productivity, gain insight, monitor quality, and react quickly to events as they unfold. There are many innovative technologies that are transforming the contact center, and below are some of the components and services leveraged for the sake of this tutorial and the purpose each of these services serve.
 
-**Amazon Connect:** A cloud-based contact center solution that enables businesses to deliver superior customer service at a lower cost. This Amazon service will be used to handle customer calls and stream audio data to Amazon Kinesis.
-**Amazon Kinesis:** A fully managed service that makes it easy to collect, process, and analyze real-time, streaming data. It will be used to stream audio data from Amazon Connect and process it for analysis.
-**Symbl.ai:** A conversational intelligence platform that analyzes and generates insights from natural language conversations. It will be used to transcribe and analyze audio data, set up trackers, and implement Retrieval Augmented Generation (RAG) using Nebula LLM.
-**Nebula LLM:** A large language model that generates human-like text based on input prompts. It will be used to generate answers to customer queries based on the knowledge base and similar content.
+- **Amazon Connect:** 
+A cloud-based contact center solution that enables businesses to deliver superior customer service at a lower cost. This Amazon service will be used to handle customer calls and stream audio data to Amazon Kinesis.
+- **Amazon Kinesis:** 
+A fully managed service that makes it easy to collect, process, and analyze real-time, streaming data. It will be used to stream audio data from Amazon Connect and process it for analysis.
+**Symbl.ai:** 
+- A conversational intelligence platform that analyzes and generates insights from natural language conversations. It will be used to transcribe and analyze audio data, set up trackers, and implement Retrieval Augmented Generation (RAG) using Nebula LLM.
+- **Nebula LLM:** 
+A large language model that generates human-like text based on input prompts. It will be used to generate answers to customer queries based on the knowledge base and similar content.
 
 
 **Prerequisites**
 You will need access to the following:
 
-. A pair of Access and Secret keys for the AWS account where Amazon Connect is configured.
-A pair of appId and secret for Symbl.ai, which you can get from the platform’s main page. We use these to retrieve a temporary access token.
-An API Key for Nebula LLM, which you get by joining the beta wait list.
+- A pair of Access and Secret keys for the AWS account where Amazon Connect is configured.
+- A pair of appId and secret for Symbl.ai, which you can get from the platform’s main page. We use these to retrieve a temporary access token.
+- An API Key for Nebula LLM, which you get by joining the beta wait list.
 
 **Set up streaming for phone conversations**
 Streaming integration brings new opportunities to react to events as they happen, instead of waiting for transactions that process afterwards. Organizations who have realized this are using it for real-time analytics, machine learning, and other decision-making services. Here, you will learn about the use of the Amazon Connect (AC) and Amazon Kinesis (AK) services, extending to other Amazon features and Artificial Intelligence with Symbl.ai. API documentation details may change, but this article provides the basic ideas that help developers further explore and use these services.
