@@ -16,10 +16,18 @@ APP_ID = 'your_app_id'
 APP_SECRET = 'your_app_secret'
 PHONE_NUMBER = 'your_phone_number'
 EMAIL = 'your_email'
-ACCESS_TOKEN = 'your_access_token'
+ACCESS_TOKEN = 'your access token'
 
 # Nebula API Key
 NEBULA_API_KEY = 'your_nebula_api_key'
+
+# Troubleshooting Tracker
+TROUBLESHOOTING_TRACKER = {
+    "trackers": [{
+        "name": "Troubleshooting",
+        "vocabulary": ["restart", "reboot", "reset", "troubleshoot", "error", "not working"]
+    }]
+}
 
 # Function to get embeddings from Nebula API
 def get_embedding(text):
@@ -72,7 +80,8 @@ def start_telephony_session():
                     "emails": [EMAIL],
                 },
             },
-        ]
+        ],
+        trackers=TROUBLESHOOTING_TRACKER
     )
     return connection_object.conversation.get_conversation_id()
 
@@ -84,6 +93,23 @@ def get_real_time_messages(conversation_id):
     }
     response = requests.get(url, headers=headers)
     return response.json().get("messages", [])
+
+# Function to get tracker matches
+def get_tracker_matches(conversation_id):
+    url = f"https://api.symbl.ai/v1/conversations/{conversation_id}/trackers"
+    headers = {
+        "Authorization": f"Bearer {ACCESS_TOKEN}"
+    }
+    response = requests.get(url, headers=headers)
+    return response.json().get("trackers", [])
+
+# Function to provide real-time assistance based on tracker matches
+def provide_real_time_assistance(tracker_matches):
+    for match in tracker_matches:
+        if match["name"] == "Troubleshooting":
+            print("Troubleshooting issue detected. Providing assistance to the agent...")
+            # Add your assistance logic here
+            print("Suggested Actions: Check device settings, restart the device, ensure connections are secure, etc.")
 
 # Main function
 def main():
@@ -117,6 +143,10 @@ def main():
     # Step 5: Store embeddings in S3
     bucket_name = 'your-s3-bucket-name'
     store_embeddings_in_s3(embeddings, bucket_name)
+
+    # Step 6: Get tracker matches and provide real-time assistance
+    tracker_matches = get_tracker_matches(conversation_id)
+    provide_real_time_assistance(tracker_matches)
 
 if __name__ == "__main__":
     main()
