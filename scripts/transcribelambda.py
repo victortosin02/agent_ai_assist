@@ -1,9 +1,18 @@
-import boto3
 import requests
 import json
+import boto3
 
 # Initialize the Kinesis client
 kinesis_client = boto3.client('kinesis')
+
+# Symbl.ai API credentials
+symbl_api_key = 'your_symbl_api_key'
+
+# Nebula API key
+NEBULA_API_KEY = 'your_nebula_api_key'
+
+# Define the troubleshooting tracker vocabulary
+troubleshooting_vocabulary = ["restart", "reboot", "reset", "troubleshoot", "error", "not working"]
 
 # Function to read data from Kinesis stream
 def read_from_kinesis():
@@ -12,7 +21,6 @@ def read_from_kinesis():
         ShardId='shardId-000000000000',
         ShardIteratorType='LATEST'
     )
-    symbl_api_key = "<APP_ID>"
 
     shard_iterator = response['ShardIterator']
     records_response = kinesis_client.get_records(ShardIterator=shard_iterator, Limit=10)
@@ -35,10 +43,12 @@ def read_from_kinesis():
         transcription = symbl_response.json()
         print(transcription)  # Print or process the transcription
 
-        # Send transcription to Nebula LLM for real-time assistance
-        assist_agent(transcription)
+        # Check if the transcription contains any troubleshooting keywords
+        if any(word in transcription['text'].lower() for word in troubleshooting_vocabulary):
+            # Send transcription to Nebula LLM for real-time assistance
+            assist_agent(transcription['text'])
 
-def assist_agent(transcription):
+def assist_agent(transcription_text):
     url = "https://api-nebula.symbl.ai/v1/model/chat/streaming"
     payload = json.dumps({
         "max_new_tokens": 1024,
@@ -46,12 +56,12 @@ def assist_agent(transcription):
         "messages": [
             {
                 "role": "human",
-                "text": transcription['text']
+                "text": transcription_text
             }
         ]
     })
     headers = {
-        'ApiKey': url,
+        'ApiKey': NEBULA_API_KEY,
         'Content-Type': 'application/json'
     }
 
