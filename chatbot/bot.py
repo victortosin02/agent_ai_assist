@@ -22,7 +22,7 @@ ACCESS_TOKEN = 'your_access_token'
 # Nebula API Key
 NEBULA_API_KEY = 'your_nebula_api_key'
 
-# Troubleshooting phrases and their precomputed embeddings
+# Precomputed embeddings for troubleshooting phrases
 troubleshooting_phrases = ["restart", "reboot", "reset", "troubleshoot", "error", "not working"]
 troubleshooting_embeddings = [get_embedding(phrase) for phrase in troubleshooting_phrases]
 
@@ -50,7 +50,47 @@ def calculate_similarity(embedding_1, embedding_2):
     similarity = cosine_similarity([embedding_1, embedding_2])
     return similarity[0][1]
 
-# Function to provide real-time assistance
+# Function to upload data to S3
+def upload_to_s3(bucket_name, key, data):
+    try:
+        s3.put_object(Bucket=bucket_name, Key=key, Body=json.dumps(data))
+        print(f"Successfully uploaded {key} to {bucket_name}")
+    except NoCredentialsError:
+        print("Credentials not available")
+
+# Function to store embeddings in S3
+def store_embeddings_in_s3(embeddings, bucket_name, prefix="embeddings/"):
+    for idx, embedding in enumerate(embeddings):
+        key = f"{prefix}embedding_{idx}.json"
+        upload_to_s3(bucket_name, key, embedding)
+
+# Function to start telephony session and retrieve conversation ID
+def start_telephony_session():
+    connection_object = symbl.Telephony.start_pstn(
+        credentials={"app_id": APP_ID, "app_secret": APP_SECRET},
+        phone_number=PHONE_NUMBER,
+        actions=[
+            {
+                "invokeOn": "stop",
+                "name": "sendSummaryEmail",
+                "parameters": {
+                    "emails": [EMAIL],
+                },
+            },
+        ]
+    )
+    return connection_object.conversation.get_conversation_id()
+
+# Function to get real-time messages from the conversation
+def get_real_time_messages(conversation_id):
+    url = f"https://api.symbl.ai/v1/conversations/{conversation_id}/messages"
+    headers = {
+        "Authorization": f"Bearer {ACCESS_TOKEN}"
+    }
+    response = requests.get(url, headers=headers)
+    return response.json().get("messages", [])
+
+# Function to assist agents based on triggers
 def assist_agent(transcription):
     text = transcription['text']
     current_embedding = get_embedding(text)
@@ -63,6 +103,7 @@ def assist_agent(transcription):
             send_real_time_assistance(text)
             break
 
+# Function to send real-time assistance
 def send_real_time_assistance(text):
     url = "https://api-nebula.symbl.ai/v1/model/chat/streaming"
     payload = json.dumps({
@@ -92,30 +133,41 @@ def read_from_kinesis():
     )
 
     shard_iterator = response['ShardIterator']
-    records_response = kinesis_client.get_records(ShardIterator=shard_iterator, Limit=10)
-
-    for record in records_response['Records']:
-        audio_chunk = record['Data']  # Extract the audio chunk
-
-        # Send audio data to Symbl.ai for transcription
-        symbl_response = requests.post(
-            "https://api.symbl.ai/v1/process/audio",
-            headers={
-                'Authorization': 'Bearer ' + ACCESS_TOKEN,
-                'Content-Type': 'application/json'
-            },
-            data=json.dumps({
-                'audio_url': 's3://your-audio-file-path'
-            })
-        )
-
-        transcription = symbl_response.json()
-        print(transcription)  # Print or process the transcription
-
-        # Send transcription to Nebula LLM for real-time assistance
-        assist_agent(transcription)
-
-# Main function to continuously read from Kinesis stream
-if __name__ == "__main__":
     while True:
-        read_from_kinesis()
+        records_response = kinesis_client.get_records(ShardIterator=shard_iterator, Limit=10)
+        shard_iterator = records_response['NextShardIterator']
+
+        for record in records_response['Records']:
+            audio_chunk = record['Data']  # Extract the audio chunk
+
+            # Send audio data to Symbl.ai for transcription
+            symbl_response = requests.post(
+                "https://api.symbl.ai/v1/process/audio",
+                headers={
+                    'Authorization': 'Bearer ' + ACCESS_TOKEN,
+                    'Content-Type': 'application/json'
+                },
+                data=json.dumps({
+                    'audio_url': 's3://your-audio-file-path'
+                })
+            )
+
+            transcription = symbl_response.json()
+            print(transcription)  # Print or process the transcription
+
+            # Send transcription to Nebula LLM for real-time assistance
+            assist_agent(transcription)
+
+# Main function
+def main():
+    # Step 1: Start telephony session and get conversation ID
+    print("Starting telephony session...")
+    conversation_id = start_telephony_session()
+    print(f"Conversation ID: {conversation_id}")
+
+    # Step 2: Read from Kinesis stream and assist agent in real-time
+    print("Reading from Kinesis stream and providing real-time assistance...")
+    read_from_kinesis()
+
+if __name__ == "__main__":
+    main()
