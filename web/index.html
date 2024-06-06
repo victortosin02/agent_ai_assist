@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Symbl Web SDK example</title>
+    <script src="https://sdk.symbl.ai/js/beta/symbl-web-sdk/latest/symbl.min.js"></script>
+    <script>
+        const {
+            Symbl
+        } = window;
+
+        const start = async() => {
+            try {
+                const symbl = new Symbl({
+                    accessToken: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlFVUTRNemhDUVVWQk1rTkJNemszUTBNMlFVVTRRekkyUmpWQ056VTJRelUxUTBVeE5EZzFNUSJ9.eyJodHRwczovL3BsYXRmb3JtLnN5bWJsLmFpL3VzZXJJZCI6IjQ3NTU3Mjk3MjM1NTU4NDAiLCJpc3MiOiJodHRwczovL2RpcmVjdC1wbGF0Zm9ybS5hdXRoMC5jb20vIiwic3ViIjoiOHFhWGVubEpLclpwQmlaUGRHdEc4bHMyNWRMNG1IemJAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vcGxhdGZvcm0ucmFtbWVyLmFpIiwiaWF0IjoxNzE3NjYxOTcyLCJleHAiOjE3MTc3NDgzNzIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsImF6cCI6IjhxYVhlbmxKS3JacEJpWlBkR3RHOGxzMjVkTDRtSHpiIn0.rH3qABbWS8qDwUWLmHr9_-UvP6Kv77_mSJUVd2-cq12fdqRf4i2dMdcAhmXkAiTE2HlDsQ2NA-1WniFJ7yqF5-TBqi4xYl9CliZKzeChsbnm6_YNP4ABxsxTWRB98igxRyKbkkb6vK40HPrYs1DspS8s-nWyPLMtUnE1RrJqTDywWKMOtf_8bF9MZTnnf99gn7I3yoDrvhmAADsTJnz7HXrh8WG4lZSJY-5qRkqjhIBG8arzPdTAR5IXuhkMyHnthAt98FT3T5ma_dNP2cWLwKKukfB1UxIziyU7dyKJCMbyIcnzp7B_IhDQBQQj6Av6cXXUPo_mvBcgDtFPPM4hRg'
+                });
+
+                // Open a Symbl Streaming API WebSocket Connection.
+                const connection = await symbl.createConnection();
+
+                // Start processing audio from your default input device.
+                await connection.startProcessing({
+                    insightTypes: ["question", "action_item", "follow_up"],
+                    config: {
+                        encoding: "OPUS" // Encoding can be "LINEAR16" or "OPUS"
+                    },
+                    speaker: {
+                        userId: "victortosin01@gmail.com",
+                        name: "Victor Tosin"
+                    }
+                });
+
+                // Retrieve real-time transcription from the conversation
+                connection.on("speech_recognition", (speechData) => {
+                    const {
+                        punctuated
+                    } = speechData;
+                    const name = speechData.user ? speechData.user.name : "User";
+                    console.log(`${name}: `, punctuated.transcript);
+                    document.querySelector("#speechRecognition").innerHTML = `${name}: ${punctuated.transcript}`;
+                });
+
+                // Retrieve the topics of the conversation in real-time.
+                connection.on("topic", (topicData) => {
+                    topicData.forEach((topic) => {
+                        console.log("Topic: " + topic.phrases);
+                    });
+                });
+
+                // Retrieve questions from the conversation in real-time.
+                connection.on("question", (questionData) => {
+                    console.log("Question Found: ", questionData["payload"]["content"]);
+                });
+
+                // This is just a helper method meant for testing purposes.
+                // Waits 60 seconds before continuing to the next API call.
+                await Symbl.wait(60000);
+
+                // Stops processing audio, but keeps the WebSocket connection open.
+                await connection.stopProcessing();
+
+                // Closes the WebSocket connection.
+                connection.disconnect();
+            } catch (e) {
+                // Handle errors here.
+                console.error(e);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="javascript: start()">Start Processing</button>
+    <p id="speechRecognition">
+        Click <b>Start Processing</b> and begin speaking to see transcription. If prompted, allow access to your microphone. <br>
+        <br> If nothing happens, check your <a href="https://platform.symbl.ai/#/home">Symbl App ID and App Secret</a> in this HTML file on lines 16 and 17 respectively.
+    </p>
+</body>
+
+</html>

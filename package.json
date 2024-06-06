@@ -1,0 +1,16 @@
+{
+    "name": "call-center-assist",
+    "version": "1.0.0",
+    "description": "Real-time call center assistance using Symbl.ai and Nebula LLM",
+    "main": "symbl_setup.js",
+    "dependencies": {
+        "@symblai/symbl-js": "^1.0.0",
+        "aws-sdk": "^2.1048.0",
+        "uuid": "^8.3.2"
+    },
+    "scripts": {
+        "start": "node symbl_setup.js"
+    },
+    "author": "Victor",
+    "license": "MIT"
+}
